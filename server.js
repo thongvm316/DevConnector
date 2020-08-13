@@ -4,10 +4,18 @@ const connectDB = require('./config/db');
 const app = express();
 
 // Connect Database
-connectDB()
+connectDB();
+app.get('/', (req, res) => res.send('API Running'));
 
-app.get('/', (req, res) => res.send('API Running'))
+// Init Middleware Body-parse
+app.use(express.json({ extended: false }));
+
+// Define Routes
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/profile', require('./routes/api/profile'));
+app.use('/api/posts', require('./routes/api/posts'));
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, (params) => console.log(`Server started on port ${PORT}`))
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

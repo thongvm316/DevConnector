@@ -1,2 +1,3 @@
 {
-  "mongoURI": "mongodb+srv://thongvm_4:thongvm4@testcluster.nhrwx.mongodb.net/dbname?retryWrites=true&w=majority"}
+  "mongoURI": "mongodb+srv://thongvm_4:thongvm4@testcluster.nhrwx.mongodb.net/dbname?retryWrites=true&w=majority"
+}
