@@ -10,6 +10,10 @@ const UserSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    password: {
+        type: String,
+        required: true
+    },
     avatar: {
         type: String
     },
@@ -19,4 +23,4 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
-module.exports = User = mongoose.model('user', UserSchema)
+module.exports = mongoose.model('user', UserSchema)

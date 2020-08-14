@@ -5,7 +5,9 @@ const app = express();
 
 // Connect Database
 connectDB();
-app.get('/', (req, res) => res.send('API Running'));
+app.get('/', (req, res) => {
+  res.send('API Running');
+});
 
 // Init Middleware Body-parse
 app.use(express.json({ extended: false }));
