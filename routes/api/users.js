@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 const { check, validationResult } = require('express-validator');
 
 // Models
@@ -24,13 +26,12 @@ router.post(
     }
 
     const { name, email, password } = req.body;
-    console.log(req.body);
 
     try {
-      // See if user exits
+      // See if user exits - Bao loi neu user da ton tai
       let user = await User.findOne({ email: email });
       if (user) {
-        res.status(400).json({ errors: [{ msg: 'User already exits' }] });
+        return res.status(400).json({ errors: [{ msg: 'User already exits' }] });
       }
 
       // Get users gravatar
@@ -47,29 +48,33 @@ router.post(
         password,
       });
 
-      // Encrypt password
-      // const salt = await bcrypt.genSalt(10);
-      // user.password = await bcrypt.hash(password, salt);
-      // await user.save();
-      // console.log(user)
-
-    bcrypt.genSalt(10, function(err, salt) {
-      bcrypt.hash(password, salt, function(err, hash) {
+      bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(password, salt, function (err, hash) {
           // Store hash in your password DB.
           user.password = hash;
           user.save();
-          console.log(user)
+        });
+      }); // Async
+
+      const payload = {
+        user: {
+          id: user.id,
+        },
+      };
+
+      jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 360000 }, (err, token) => {
+        if(err) throw err;
+        res.json({ token })
       });
-    });
 
       // Return jsonwebtoken
-
-      res.send('User register');
+      // res.send('User register');  
     } catch (error) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
+      console.log(error.message)
+      res.status(500).send('Server Error')
     }
   }
 );
 
 module.exports = router;
+
