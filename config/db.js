@@ -17,12 +17,4 @@ const connectDB = async () => {
   } // Asynchonous
 };
 
-// const connectDB = () => {
-//    mongoose.connect(db, {
-//     useUnifiedTopology: true,
-//     useNewUrlParser: true,
-//     useCreateIndex: true
-//   }, () => console.log('MongoDB Connected...'));
-// };
-
 module.exports = connectDB;

@@ -31,7 +31,9 @@ router.post(
       // See if user exits - Bao loi neu user da ton tai
       let user = await User.findOne({ email: email });
       if (user) {
-        return res.status(400).json({ errors: [{ msg: 'User already exits' }] });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'User already exits' }] });
       }
 
       // Get users gravatar
@@ -62,19 +64,23 @@ router.post(
         },
       };
 
-      jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 360000 }, (err, token) => {
-        if(err) throw err;
-        res.json({ token })
-      });
+      jwt.sign(
+        payload,
+        config.get('jwtSecret'),
+        { expiresIn: 360000 },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
 
       // Return jsonwebtoken
-      // res.send('User register');  
+      // res.send('User register');
     } catch (error) {
-      console.log(error.message)
-      res.status(500).send('Server Error')
+      console.log(error.message);
+      res.status(500).send('Server Error');
     }
-  }
+  } // Khi co UI se thu them ve try catch
 );
 
 module.exports = router;
-
