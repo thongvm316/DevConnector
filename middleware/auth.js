@@ -5,7 +5,6 @@ module.exports = function (req, res, next) {
   // Get token from header
 
   const token = req.header('x-auth-token');
-  console.log(Object.keys(req))
 
   // Check if not token
   if (!token) {
@@ -14,7 +13,7 @@ module.exports = function (req, res, next) {
 
   // Verify token
   try {
-    const decoded = jwt.verify(token, config.get('jwtSecret'));
+    const decoded = jwt.verify(token, config.get('jwtSecret')); 
     // console.log(req.user);
     console.log(decoded)
     req.user = decoded.user;
