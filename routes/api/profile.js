@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
-var ObjectId = require('mongoose').Types.ObjectId;
-
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
@@ -13,13 +11,14 @@ router.post(
   [
     auth,
     [
-      check('status', 'Status if require').not().isEmpty(),
+      check('status', 'Status is require').not().isEmpty(),
       check('skills', 'Skills is require').not().isEmpty(),
     ],
   ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      // App exe errors.isEmpty() first, then exe ! -> give result
       return res.status(400).json({ errors: errors.array() });
     }
 
@@ -61,9 +60,10 @@ router.post(
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });
+      console.log(profile);
       if (profile) {
         // Update
-        profile = await Profile.findByIdAndUpdate(
+        profile = await Profile.findOneAndUpdate(
           { user: req.user.id },
           { $set: profileFields },
           { new: true }
@@ -73,10 +73,9 @@ router.post(
       }
 
       // Create
-      profile = new Profile(profileFields)
-      await profile.save()
-      res.json(profile)
-
+      profile = new Profile(profileFields);
+      await profile.save();
+      res.json(profile);
     } catch (error) {
       console.log(error.message);
       res.status(500).send('Server Error');
@@ -97,6 +96,36 @@ router.get('/me', auth, async (req, res) => {
     res.json(profile);
   } catch (error) {
     console.log(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+router.get('/', async (req, res) => {
+  try {
+    const profiles = await Profile.find().populate('user', ['name', 'avatar']);
+
+    res.json(profiles);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+router.get('/user/:user_id', async (req, res) => {
+  try {
+    const profile = await Profile.findOne({
+      user: req.params.user_id,
+    }).populate('user', ['name', 'avatar']);
+    if (!profile) {
+      return res.status(400).json({ msg: 'Profile not found' });
+    }
+    res.json(profile);
+  } catch (error) {
+    console.log(error.message);
+    console.log(error.kind);
+    if (error.kind == 'ObjectId') {
+      return res.status(400).json({ msg: 'Profile not found' });
+    }
     res.status(500).send('Server Error');
   }
 });
