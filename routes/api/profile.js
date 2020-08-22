@@ -18,7 +18,7 @@ router.post(
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      // App exe errors.isEmpty() first, then exe ! -> give result
+      // App exec errors.isEmpty() first, then exec ! -> give result
       return res.status(400).json({ errors: errors.array() });
     }
 
@@ -60,7 +60,6 @@ router.post(
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });
-      console.log(profile);
       if (profile) {
         // Update
         profile = await Profile.findOneAndUpdate(
@@ -122,12 +121,95 @@ router.get('/user/:user_id', async (req, res) => {
     res.json(profile);
   } catch (error) {
     console.log(error.message);
-    console.log(error.kind);
     if (error.kind == 'ObjectId') {
       return res.status(400).json({ msg: 'Profile not found' });
-    }
+    } // When compare is not valid -> show above msg, other show behind
     res.status(500).send('Server Error');
   }
 });
 
+router.delete('/', auth, async (req, res) => {
+  try {
+    // Remove profile
+    await Profile.findOneAndRemove({ user: req.user.id });
+
+    // Remove user
+    await User.findOneAndRemove({ _id: req.user.id });
+
+    res.json({ msg: 'User deleted' });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+router.put(
+  '/experience',
+  [
+    auth,
+    [
+      check('title', 'Title is require').not().isEmpty(),
+      check('company', 'Company is require').not().isEmpty(),
+      check('from', 'From day is require').not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const {
+      title,
+      company,
+      location,
+      from,
+      to,
+      current,
+      description,
+    } = req.body;
+
+    const newExp = {
+      title,
+      company,
+      location,
+      from,
+      to,
+      current,
+      description,
+    };
+
+    try {
+      const profile = await Profile.findOne({ user: req.user.id });
+      profile.experience.unshift(newExp); // The unshift() method adds new items to the beginning of an array, and returns the new length.
+
+      await profile.save();
+
+      res.json(profile);
+    } catch (error) {
+      console.log(error.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
+
+router.delete('/experiance/:exp_id', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    // Get remove index
+    const removeIndex = profile.experience
+      .map((item) => item.id)
+      .indexOf(req.params.exp_id); // indexOf: return position, if not return -1
+
+    profile.experience.splice(removeIndex, 1) // removeIndex: position will be removed, 1: SL will be remove
+    await profile.save()
+    res.json(profile)
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send('Server Error');
+  }
+
+  // Next week -> Res: Why use JWT when register and login / Try: user login and profile
+});
 module.exports = router;
