@@ -9,6 +9,7 @@ const { check, validationResult } = require('express-validator');
 // Models
 const User = require('../../models/User');
 
+// Register
 router.post(
   '/',
   [
@@ -74,8 +75,6 @@ router.post(
         }
       );
 
-      // Return jsonwebtoken
-      // res.send('User register');
     } catch (error) {
       console.log(error.message);
       res.status(500).send('Server Error');

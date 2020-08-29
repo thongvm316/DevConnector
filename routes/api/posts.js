@@ -170,23 +170,25 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
     const post = await Post.findById(req.params.id);
 
     // Pull out comment
-    const comment = post.comments.find(comment => comment.id === req.params.comment_id)
+    const comment = post.comments.find(
+      (comment) => comment.id === req.params.comment_id
+    );
 
     // Make sure comment exitsts
     if (!comment) {
-      return res.status(404).json({ msg: "Comment does not exist" })
+      return res.status(404).json({ msg: 'Comment does not exist' });
     }
 
     // Check user - User da post thi moi co the xoa dc
     if (comment.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: "User not authorized" })
+      return res.status(401).json({ msg: 'User not authorized' });
     }
 
     // Get remove index
     // const removeIndex = post.comments
     //   .map(comment => comment.user.toString())
     //   .indexOf(req.user.id);
-    
+
     // console.log(post.comments
     //   .map(comment => comment.user.toString()).indexOf(req.user.id))
 
@@ -194,13 +196,10 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
     // await post.save();
     // res.json(post.comments);
 
-    post.comments = post.comments.filter(
-      (id) => {
-        // console.log(id)
-        return  id !== req.params.comment_id
-      }
-     
-    );
+    post.comments = post.comments.filter((id) => {
+      // console.log(id)
+      return id !== req.params.comment_id;
+    });
 
     await post.save();
 
@@ -209,7 +208,7 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
     console.log(error.message);
     res.status(500).send('Server Error');
   }
- /* Mai coi tiep route nay */
+  /* Mai coi tiep route nay */
 });
 
 module.exports = router;

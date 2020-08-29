@@ -8,6 +8,7 @@ const bcrypt = require('bcryptjs');
 
 const User = require('../../models/User');
 
+// Get user after login
 router.get('/', auth, async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select('-password') // select('-name'): loai bo field khi tim thay user
@@ -18,6 +19,8 @@ router.get('/', auth, async (req, res) => {
     }
 })
 
+
+// Login
 router.post(
     '/',
     [
@@ -25,7 +28,7 @@ router.post(
       check(
         'password',
         'Password is require'
-      ).exists()
+      ).exists() // exists(): neu user ko nhap password thi gia tri la underfine ham exists tra ve string trong ham check and nguoi dung co the nhap bat cu gia tri nao
     ],
     async (req, res) => {
       const errors = validationResult(req);
