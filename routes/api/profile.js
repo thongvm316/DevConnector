@@ -6,6 +6,7 @@ const { check, validationResult } = require('express-validator');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
+// Get info from use, then store or create to MongoDB
 router.post(
   '/',
   [
@@ -47,7 +48,7 @@ router.post(
     if (status) profileFields.status = status;
     if (githubusername) profileFields.githubusername = githubusername;
     if (skills) {
-      profileFields.skills = skills.split(',').map((skill) => skill.trim()); // Remove whitespace from both sides of a string:
+      profileFields.skills = skills.split(',').map((skill) => skill.trim()); // trim(): Remove whitespace from both sides of a string:
     }
 
     // Build social object
@@ -63,10 +64,10 @@ router.post(
       if (profile) {
         // Update
         profile = await Profile.findOneAndUpdate(
-          { user: req.user.id },
-          { $set: profileFields },
-          { new: true }
-        ); // new: neu ko co feild, thi them moi vao obj
+          { user: req.user.id }, // condition to find user which will be update
+          { $set: profileFields }, // update
+          { new: true } // new: neu ko co feild, thi them moi vao obj
+        ); 
 
         return res.json(profile);
       }
@@ -82,6 +83,7 @@ router.post(
   }
 );
 
+// Get profile of myself
 router.get('/me', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({

@@ -15,7 +15,7 @@ const connectDB = async () => {
     console.error(`Notice Err: ${err.message}`);
     // Exit process with failure
     process.exit(1); // khi co loi, stop chuong trinh luon, neu ko co line nay, chuong trinh continues, mac du co loi
-  } // Asynchonous
+  }
 };
 
 module.exports = connectDB;

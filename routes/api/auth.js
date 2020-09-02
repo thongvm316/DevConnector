@@ -17,7 +17,7 @@ router.get('/', auth, async (req, res) => {
         console.log(error.message)
         res.status(500).send('Server Error')
     }
-})
+}) //??? chua biet dung de lam gi
 
 
 // Login
@@ -28,7 +28,7 @@ router.post(
       check(
         'password',
         'Password is require'
-      ).exists() // exists(): neu user ko nhap password thi gia tri la underfine ham exists tra ve string trong ham check and nguoi dung co the nhap bat cu gia tri nao
+      ).exists() // exists(): check xem nguoi dung co nhap pass hay ko, va ko quan tam nguoi dung nhap gi, chi can co nhap
     ],
     async (req, res) => {
       const errors = validationResult(req);
@@ -39,7 +39,6 @@ router.post(
       const { email, password } = req.body;
   
       try {
-
         let user = await User.findOne({ email: email });
         if (!user) {
           return res
@@ -57,7 +56,7 @@ router.post(
   
         const payload = {
           user: {
-            id: user.id,
+            id: user.id
           },
         };
        
@@ -66,7 +65,6 @@ router.post(
           config.get('jwtSecret'),
           { expiresIn: 360000 },
           (err, token) => {
-            if (err) throw err;
             res.json({ token });
           }
         );
