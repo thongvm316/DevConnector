@@ -1,11 +1,9 @@
 import React, { Fragment, useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setAlert } from '../../action/alert';
-import PropTypes from 'prop-types';
 
-const Register = ({ setAlert }) => {
-  console.log(props);
+const Register = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,10 +16,12 @@ const Register = ({ setAlert }) => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  const dispatch = useDispatch()
+  
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
-      setAlert('Password do not match', 'danger');
+      dispatch(setAlert('Password do not match', 'danger'))
     } else {
       console.log(`SUCCESS`);
     }
@@ -65,7 +65,7 @@ const Register = ({ setAlert }) => {
             name='password'
             value={password}
             onChange={(e) => onChange(e)}
-            minLength='6'
+            minLength='6' 
           />
         </div>
         <div className='form-group'>
@@ -87,8 +87,5 @@ const Register = ({ setAlert }) => {
   );
 };
 
-Register.PropTypes = {
-  setAlert: PropTypes.func.isRequired,
-}
+export default Register;
 
-export default connect(null, { setAlert })(Register);
