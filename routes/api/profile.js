@@ -104,7 +104,6 @@ router.get('/me', auth, async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const profiles = await Profile.find().populate('user', ['name', 'avatar']);
-
     res.json(profiles);
   } catch (error) {
     console.log(error.message);
@@ -125,7 +124,7 @@ router.get('/user/:user_id', async (req, res) => {
     console.log(error.message);
     if (error.kind == 'ObjectId') {
       return res.status(400).json({ msg: 'Profile not found' });
-    } // When compare is not valid -> show above msg, other show behind
+    } // When compare is not valid and kind !== ObjId -> show above msg, other show behind
     res.status(500).send('Server Error');
   }
 });
@@ -201,10 +200,10 @@ router.delete('/experiance/:exp_id', auth, async (req, res) => {
 
     // Get remove index
     const removeIndex = profile.experience
-      .map((item) => item.id)
+      .map(item => item.id)
       .indexOf(req.params.exp_id); // indexOf: return position, if not return -1
 
-    profile.experience.splice(removeIndex, 1) // removeIndex: position will be removed, 1: SL will be remove
+    profile.experience.splice(removeIndex, 1) // removeIndex: position will be removed, 1: Quantity will be remove
     await profile.save()
     res.json(profile)
   } catch (error) {
