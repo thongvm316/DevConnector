@@ -4,7 +4,7 @@ import { REGISTER_SUCCESS, REGISTER_FAIL } from '../action/types';
 
 // Register user
 export const register = ({ name, email, password }) => 
-  async (dispatch) => {
+  async dispatch => {
     const config = {
       headers: {
         'Content-type': 'application/json',
@@ -12,17 +12,17 @@ export const register = ({ name, email, password }) =>
     };
 
     const body = JSON.stringify({ name, email, password });
-
     try {
       const res = await axios.post('api/users', body, config);
-      console.log(res);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
       });
     } catch (error) {
       const errors = error.response.data.errors;
+      console.log(errors)
       if (errors) {
+        
         errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
       }
       dispatch({

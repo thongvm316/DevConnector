@@ -5,7 +5,7 @@ const { check, validationResult } = require('express-validator');
 
 // Model
 const Post = require('../../models/Post');
-const Profile = require('../../models/Profile');
+// const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
 router.post(
@@ -92,10 +92,7 @@ router.put('/like/:id', auth, async (req, res) => {
     const post = await Post.findById(req.params.id);
 
     // Check if the post has already been liked - Purpose: neu user da like post do roi, thi ko dc like nua
-    if (
-      post.likes.filter((like) => like.user.toString() === req.user.id).length >
-      0
-    ) {
+    if ( post.likes.filter((like) => like.user.toString() === req.user.id).length > 0 ) {
       return res.status(400).json({ msg: 'Post already liked' });
     }
 
@@ -122,7 +119,7 @@ router.put('/unlike/:id', auth, async (req, res) => {
 
     // Get remove index
     const removeIndex = post.likes
-      .map((like) => like.user.toString())
+      .map(like => like.user.toString())
       .indexOf(req.user.id);
 
     post.likes.splice(removeIndex, 1);
@@ -171,7 +168,7 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
 
     // Pull out comment
     const comment = post.comments.find(
-      (comment) => comment.id === req.params.comment_id
+      comment => comment.id === req.params.comment_id
     );
 
     // Make sure comment exitsts
@@ -196,8 +193,8 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
     // await post.save();
     // res.json(post.comments);
 
-    post.comments = post.comments.filter((id) => {
-      // console.log(id)
+    post.comments = post.comments.filter(id => {
+      console.log(id)
       return id !== req.params.comment_id;
     });
 
@@ -208,7 +205,6 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
     console.log(error.message);
     res.status(500).send('Server Error');
   }
-  /* Mai coi tiep route nay */
 });
 
 module.exports = router;

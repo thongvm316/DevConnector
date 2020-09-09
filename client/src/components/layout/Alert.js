@@ -14,7 +14,6 @@ const Alert = ({ alerts }) => {
  // Purpose: show err if it is
 }
     
-
 Alert.propTypes = {
   alerts: PropTypes.array.isRequired,
 };

@@ -5,7 +5,8 @@ import { setAlert } from '../../action/alert';
 import { register } from '../../action/auth';
 import PropTypes from 'prop-types';
 
-const Register = ({ setAlert, register, isAuthenticated }) => {
+const Register = (props) => {
+  const { setAlert, register, isAuthenticated } = props
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,7 +22,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
-      setAlert('Passwords do not match', 'danger');
+      setAlert('Passwords do not match', 'danger'); // nghia la exec dispatch
     } else {
       register({ name, email, password });
     }
@@ -98,6 +99,9 @@ Register.propTypes = {
 // });
 
 export default connect(null, { setAlert, register })(Register);
+// { setAlert, register }: xem nhu da goi ham setAlert, register, ca 2 return ve ham dispatch, 
+
+
 
 
 
