@@ -27,6 +27,7 @@ router.post(
     }
 
     const { name, email, password } = req.body;
+    console.log({name, email, password})
 
     try {
       // See if user exits - Bao loi neu user da ton tai

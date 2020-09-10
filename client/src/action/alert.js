@@ -8,7 +8,7 @@ export const setAlert = (msg, alertType, timeout = 7000) => dispatch => {
     payload: { msg, alertType, id }
   });
 
-  setTimeout(() => dispatch({ type: REMOVE_ALERT, payload: id }), timeout);
+  setTimeout(() => dispatch({ type: REMOVE_ALERT, payload: id }), timeout); // Even loop se giai thich duoc nguyen ly hoat dong
 };
 
 // import { SET_ALERT, REMOVE_ALERT } from './types';

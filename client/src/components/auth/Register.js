@@ -22,7 +22,7 @@ const Register = (props) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
-      setAlert('Passwords do not match', 'danger'); // nghia la exec dispatch
+      setAlert('Passwords do not match', 'danger'); // do co middleware thunk -> fn setAlert return Fn, thunk tam dung doi Fn chay xong, roi gui plain Obj den reducer
     } else {
       register({ name, email, password });
     }

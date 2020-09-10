@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const Alert = ({ alerts }) => {
+const Alert = (props) => {
+  const { alerts } = props
     return  alerts !== null &&
             alerts.length > 0 &&
             alerts.map(alert => 
