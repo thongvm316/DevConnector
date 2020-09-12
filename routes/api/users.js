@@ -62,9 +62,11 @@ router.post(
 
       const payload = {
         user: {
-          id: user.id, // ???????
+          id: user.id, // id or _id, All are ok
         },
       };
+
+      console.log({user, payload})
      
       jwt.sign(
         payload,
