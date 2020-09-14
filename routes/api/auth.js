@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 
 const User = require('../../models/User');
 
-// Get user after login
+// Get user after login, register
 router.get('/', auth, async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select('-password') // select('-name'): loai bo field khi tim thay user
