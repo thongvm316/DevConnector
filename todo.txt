@@ -1,0 +1,42 @@
+Goal: Review - logic backend
+Kich ban: Muc dich - ptich giai phap of author - tu trinh bay lai
+
+1/ Setup: MongoDB Atlas setup - Express - Connect MongoDB with mongoose - Router file --> Done
+
+--
+2/ JWT - Auth Route - User route / Detail of purpose with every one
+JWT -> done
+
+User router: create Model, validate(name, email, password), check if user already exits, create user - hash password and save, create jwt -> done
+
+Auth route: purpose is login -> validate(email, password) - check error and process if error exists, find user in mongo and process if !user, compare password and create jwt --> done
+
+--
+3/ Profile route: post - get me - get all - get with user_id - delete // put experience - deleete experience with exp_id // put education - delete education with edc_id
+
+Post: get info from user and store or update to MongoDB-> 1/ auth middleware, 2/ validate(status, skills) 3/ Create obj with info from user 4/ Logic to update or create
+
+--
+4/ Post route
+
+---- Front-End ----
+
+1. Get info from User in Register comp and send it to API api/users to register user
+    a. Connect Redux
+    b. If err -> show in UI by Alert Redux
+    c. Else -> send data to server and sign - return token to user by Auth Redux
+
+
+2. Load User & Set Auth Token
+Note: After register, one token will be send to client and set to LocalStogare - set it to req Header - load user with that token
+todos:
+a. setAuthToken
+b. Action loadUser
+c. reducer
+d. after register and token
+
+
+Hoc them ve axios on youtube
+today: 
+1. Why setAuthToken in App comp and Fn loadUser in Action?
+2. User Login.
