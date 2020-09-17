@@ -36,7 +36,11 @@ c. reducer
 d. after register and token
 
 
-Hoc them ve axios on youtube
-today: 
-1. Why setAuthToken in App comp and Fn loadUser in Action?
-2. User Login.
+3. User Login
+a. Get info from user (Login Comp) -> update to useState
+b. When user submit -> exc Fn action login
+c. Redirect if loggin success
+
+4. Logout
+a. Create type logout - action - reducer
+b. Navbar Comp: destructor props - loading? - conditional rendering
