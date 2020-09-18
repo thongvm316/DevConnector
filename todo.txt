@@ -21,6 +21,7 @@ Post: get info from user and store or update to MongoDB-> 1/ auth middleware, 2/
 
 ---- Front-End ----
 
+---- User Authencation ----
 1. Get info from User in Register comp and send it to API api/users to register user
     a. Connect Redux
     b. If err -> show in UI by Alert Redux
@@ -44,3 +45,5 @@ c. Redirect if loggin success
 4. Logout
 a. Create type logout - action - reducer
 b. Navbar Comp: destructor props - loading? - conditional rendering
+
+---- Dashboard & Profile Management ----
