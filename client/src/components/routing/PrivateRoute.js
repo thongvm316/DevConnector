@@ -5,10 +5,12 @@ import { connect } from 'react-redux';
 
 const PrivateRoute = (props) => {
     const {
-        component: Component,
+        component: Component, // component = Dashboard comp
         auth: { isAuthenticated, loading }, 
         ...rest
     } = props
+    console.log(props)
+    console.log({...rest})
     return  (
         <Route
           {...rest}
@@ -16,7 +18,7 @@ const PrivateRoute = (props) => {
             !isAuthenticated && !loading ? (
               <Redirect to='/login' />
             ) : (
-              <Component {...props}/>
+              <Component {...props}/> // Component = Dashboard comp
             )
           }
         />

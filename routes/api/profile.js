@@ -6,7 +6,7 @@ const { check, validationResult } = require('express-validator');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
-// Get info from use, then store or create to MongoDB
+// Get info from user, then store or create to MongoDB
 router.post(
   '/',
   [

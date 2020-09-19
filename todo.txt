@@ -47,3 +47,7 @@ a. Create type logout - action - reducer
 b. Navbar Comp: destructor props - loading? - conditional rendering
 
 ---- Dashboard & Profile Management ----
+1. Protect this route - purpose: khi nguoi dung truy cap Dashboard, neu chua dang nhap, Redirect user ve login page and continues neu da login. (PrivateRoute)
+
+2. Redux (reducer - action) profile - Get current profile
+Next: Login, create profile in BE - get profile in FE 

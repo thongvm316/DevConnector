@@ -33,7 +33,7 @@ const App = () => {
         <section className='container'>
           <Alert />
           <Switch>
-            <Route exact path='/register' component={Register} />
+            <Route exact path='/register' render={(props) => <Register {... props}/>} /> {/* Like: line 37 if user render */}
             <Route exact path='/login' component={Login} />
             <PrivateRoute exact path='/dashboard' component={Dashboard} />
           </Switch>
