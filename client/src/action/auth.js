@@ -7,28 +7,29 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGOUT
+  LOGOUT,
+  CLEAR_PROFILE,
 } from '../action/types';
-import setAuthToken from '../utils/setAuthToken'
+import setAuthToken from '../utils/setAuthToken';
 
 // Load User - Purpose ???
-export const loadUser = () => async dispatch => {
-  if(localStorage.token) {
-    setAuthToken(localStorage.token)
+export const loadUser = () => async (dispatch) => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
   } // why use for this action and App Comp ???
 
   try {
-    const res = await axios.get('/api/auth')
+    const res = await axios.get('/api/auth');
     dispatch({
       type: USER_LOADED,
-      payload: res.data
-    })
+      payload: res.data,
+    });
   } catch (error) {
     dispatch({
-      type: AUTH_ERROR
-    })
+      type: AUTH_ERROR,
+    });
   }
-}
+};
 
 // Register user
 export const register = ({ name, email, password }) => async (dispatch) => {
@@ -46,7 +47,7 @@ export const register = ({ name, email, password }) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(loadUser())
+    dispatch(loadUser());
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {
@@ -66,14 +67,14 @@ export const login = ({ email, password }) => async (dispatch) => {
     },
   };
 
-  const body = JSON.stringify({email, password});
+  const body = JSON.stringify({ email, password });
   try {
     const res = await axios.post('api/auth', body, config);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
     });
-    dispatch(loadUser())
+    dispatch(loadUser());
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {
@@ -86,6 +87,7 @@ export const login = ({ email, password }) => async (dispatch) => {
 };
 
 // Logout - Clear profile
-export const logout = () => dispatch => {
-  dispatch({ type: LOGOUT })
-}
+export const logout = () => (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE });
+  dispatch({ type: LOGOUT });
+};

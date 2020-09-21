@@ -67,7 +67,7 @@ router.post(
           { user: req.user.id }, // condition to find user which will be update
           { $set: profileFields }, // update
           { new: true } // new: neu ko co feild, thi them moi vao obj
-        ); 
+        );
 
         return res.json(profile);
       }
@@ -200,12 +200,12 @@ router.delete('/experiance/:exp_id', auth, async (req, res) => {
 
     // Get remove index
     const removeIndex = profile.experience
-      .map(item => item.id)
+      .map((item) => item.id)
       .indexOf(req.params.exp_id); // indexOf: return position, if not return -1
 
-    profile.experience.splice(removeIndex, 1) // removeIndex: position will be removed, 1: Quantity will be remove
-    await profile.save()
-    res.json(profile)
+    profile.experience.splice(removeIndex, 1); // removeIndex: position will be removed, 1: Quantity will be remove
+    await profile.save();
+    res.json(profile);
   } catch (error) {
     console.log(error.message);
     res.status(500).send('Server Error');
@@ -272,15 +272,13 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
       .map((item) => item.id)
       .indexOf(req.params.edu_id); // indexOf: return position, if not return -1
 
-    profile.education.splice(removeIndex, 1) // removeIndex: position will be removed, 1: SL will be remove
-    await profile.save()
-    res.json(profile)
+    profile.education.splice(removeIndex, 1); // removeIndex: position will be removed, 1: SL will be remove
+    await profile.save();
+    res.json(profile);
   } catch (error) {
     console.log(error.message);
     res.status(500).send('Server Error');
   }
 });
 
-
 module.exports = router;
-
