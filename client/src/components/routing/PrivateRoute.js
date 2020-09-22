@@ -9,8 +9,6 @@ const PrivateRoute = (props) => {
         auth: { isAuthenticated, loading }, 
         ...rest
     } = props
-    console.log(props)
-    console.log({...rest})
     return  (
         <Route
           {...rest}

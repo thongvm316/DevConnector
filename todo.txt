@@ -52,4 +52,8 @@ b. Navbar Comp: destructor props - loading? - conditional rendering
 Purpose: Sau khi login, token duoc luu trong LocalStogare - thao tac lay profile cua user nay
 Logic: Sau khi login -> Redirect page Dashboard and exec action getCurrentProfile by useEfect, reducer with that action -> Return new state -> Render State into UI
 
-3. Starting On The Dashboard
+3. Starting On The Dashboard -> Render data to UI
+
+4. CreateProfile Component - Action
+a. Prepare HTML - state
+b. Action to create or update
