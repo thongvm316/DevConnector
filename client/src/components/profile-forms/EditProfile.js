@@ -1,18 +1,23 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createProfile } from '../../action/profile';
+import { createProfile, getCurrentProfile } from '../../action/profile';
 
-function CreateProfile(props) {
-  // console.log(props)
-  const { createProfile, history } = props
+function EditProfile(props) {
+  console.log(props);
+  const {
+    createProfile,
+    history,
+    getCurrentProfile,
+    profile: { profile, loading },
+  } = props;
   const [formData, setFormData] = useState({
     company: '',
     location: '',
     website: '',
     bio: '',
-    skills: '',
+    skills: '', 
     status: '',
     githubusername: '',
     youtube: '',
@@ -39,13 +44,32 @@ function CreateProfile(props) {
     facebook,
   } = formData;
 
+  useEffect(() => {
+    getCurrentProfile(); // Purpose ???
+    setFormData({
+      company: loading || !profile.company ? '' : profile.company,
+      website: loading || !profile.website ? '' : profile.website,
+      location: loading || !profile.location ? '' : profile.location,
+      status: loading || !profile.status ? '' : profile.status,
+      skills: loading || !profile.skills ? '' : profile.skills.join('.'),
+      githubusername:
+        loading || !profile.githubusername ? '' : profile.githubusername,
+      bio: loading || !profile.bio ? '' : profile.bio,
+      twitter: loading || !profile.social ? '' : profile.social.twitter,
+      facebook: loading || !profile.social ? '' : profile.social.facebook,
+      linkedin: loading || !profile.social ? '' : profile.social.linkedin,
+      youtube: loading || !profile.social ? '' : profile.social.youtube,
+      instagram: loading || !profile.social ? '' : profile.social.instagram,
+    }); // lat nua, check code roi phan tich logic
+  }, [loading]);
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
-      e.preventDefault();
-      createProfile(formData, history)
-  }
+  const onSubmit = (e) => {
+    e.preventDefault();
+    createProfile(formData, history, true);
+  };
 
   return (
     <Fragment>
@@ -55,7 +79,7 @@ function CreateProfile(props) {
         profile stand out
       </p>
       <small>* = required field</small>
-      <form className='form' onSubmit={e => onSubmit(e)}>
+      <form className='form' onSubmit={(e) => onSubmit(e)}>
         <div className='form-group'>
           <select name='status' value={status} onChange={(e) => onChange(e)}>
             {' '}
@@ -81,7 +105,7 @@ function CreateProfile(props) {
             name='company'
             value={company}
             onChange={(e) => {
-              console.log(e.target)
+              console.log(e.target);
               onChange(e);
             }}
           />
@@ -227,8 +251,26 @@ function CreateProfile(props) {
   );
 }
 
-CreateProfile.propTypes = {
+EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
 };
 
-export default connect(null, { createProfile })(CreateProfile);
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+});
+
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+  EditProfile
+);
+
+/* 
+Purpose:
+1. Render data of profile to UI.
+2. Edit profile and store to dbs
+
+Tommorow: 
+1. How to get profile value and render to UI (Note: Relate to Dashboard Comp)
+2. Purpose of getCurrentProfile in useEfect
+*/

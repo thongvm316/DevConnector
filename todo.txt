@@ -54,6 +54,8 @@ Logic: Sau khi login -> Redirect page Dashboard and exec action getCurrentProfil
 
 3. Starting On The Dashboard -> Render data to UI
 
-4. CreateProfile Component - Action
-a. Prepare HTML - state
+4. CreateProfile Component - Create Action
+a. Prepare HTML - state - get value from UI and process
 b. Action to create or update
+
+5.  Edit Profile
