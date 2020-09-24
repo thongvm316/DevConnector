@@ -1,4 +1,9 @@
-import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE } from '../action/types';
+import {
+  GET_PROFILE,
+  PROFILE_ERROR,
+  CLEAR_PROFILE,
+  UPDATE_PROFILE,
+} from '../action/types';
 
 const initialState = {
   profile: null,
@@ -12,6 +17,7 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case GET_PROFILE:
+    case UPDATE_PROFILE:
       return {
         ...state,
         profile: payload,
@@ -24,12 +30,12 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case CLEAR_PROFILE:
-        return {
-            ...state,
-            profile: null,
-            repos: [],
-            loading: false
-        } // Khi da dang nhap user a, sau do logout user a, dang nhap user b, luc nay user b chua co profile nhung van render profile cua user a, them action de clear profile khi logout
+      return {
+        ...state,
+        profile: null,
+        repos: [],
+        loading: false,
+      }; // Khi da dang nhap user a, sau do logout user a, dang nhap user b, luc nay user b chua co profile nhung van render profile cua user a, them action de clear profile khi logout
     default:
       return state;
   }

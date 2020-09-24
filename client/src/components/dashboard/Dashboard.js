@@ -12,7 +12,7 @@ const Dashboard = ({
   profile: { profile, loading },
 }) => {
   useEffect(() => {
-    getCurrentProfile();
+    getCurrentProfile(); // Purpose: If user have profile - store to state with redux solution
   }, []);
   return loading && profile === null ? (
     <Spinner />

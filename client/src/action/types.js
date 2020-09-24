@@ -8,6 +8,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const GET_PROFILE = 'GET_PROFILE';
+export const UPDATE_PROFILE = 'UPDATE_PROFILE'; // User for edu and exp
 export const CLEAR_PROFILE = 'CLEAR_PROFILE'; // Khi da dang nhap user a, sau do logout user a, dang nhap user b, luc nay user b chua co profile nhung van render profile cua user a, them action de clear profile khi logout
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 

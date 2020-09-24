@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../action/profile';
 
 function EditProfile(props) {
-  console.log(props);
+  // console.log(props.profile);
   const {
     createProfile,
     history,
@@ -17,7 +17,7 @@ function EditProfile(props) {
     location: '',
     website: '',
     bio: '',
-    skills: '', 
+    skills: '',
     status: '',
     githubusername: '',
     youtube: '',
@@ -45,7 +45,7 @@ function EditProfile(props) {
   } = formData;
 
   useEffect(() => {
-    getCurrentProfile(); // Purpose ???
+    // getCurrentProfile(); // Purpose ???
     setFormData({
       company: loading || !profile.company ? '' : profile.company,
       website: loading || !profile.website ? '' : profile.website,
@@ -60,7 +60,7 @@ function EditProfile(props) {
       linkedin: loading || !profile.social ? '' : profile.social.linkedin,
       youtube: loading || !profile.social ? '' : profile.social.youtube,
       instagram: loading || !profile.social ? '' : profile.social.instagram,
-    }); // lat nua, check code roi phan tich logic
+    }); // Render data of profile from state to EditProfile Comp
   }, [loading]);
 
   const onChange = (e) =>
@@ -105,7 +105,6 @@ function EditProfile(props) {
             name='company'
             value={company}
             onChange={(e) => {
-              console.log(e.target);
               onChange(e);
             }}
           />
@@ -264,13 +263,3 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
   EditProfile
 );
-
-/* 
-Purpose:
-1. Render data of profile to UI.
-2. Edit profile and store to dbs
-
-Tommorow: 
-1. How to get profile value and render to UI (Note: Relate to Dashboard Comp)
-2. Purpose of getCurrentProfile in useEfect
-*/

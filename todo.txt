@@ -59,3 +59,18 @@ a. Prepare HTML - state - get value from UI and process
 b. Action to create or update
 
 5.  Edit Profile
+a. Get data of profile after user login and render UI
+    Logic:
+        a1. User login success -> Redirect Dashboard Comp
+        a2. Check user have profile or not in conditional rendering in Dashboard Comp
+        a3. If a2 ok -> useEfect(getCurrentProfile) to store data from server to state
+        a4. Get state and render to EditProfie Comp.
+b. Edit Profile
+    Logic:
+        b1. Get new info user and submit through from
+        b2. Exec createProfile() in submit action
+        b3. Logic with createProfile...
+
+6. Add Experience - education
+a. Action - Redux
+b. Component of that and use Action - redux
