@@ -74,3 +74,12 @@ b. Edit Profile
 6. Add Experience - education
 a. Action - Redux
 b. Component of that and use Action - redux
+
+7. List Education & Experiences: Purpose -> Show data to UI
+a. Create Experience and Education Component.
+b. Add those Component to Dashboard.js and pass props data
+c. Those comp use props as data and process to render to UI
+
+8. Delete Education, Experiences & Account - Post of acc which is login
+a. Action in profile - Reducer in profile
+b. dispatch in Experience, Education, Dashboard comp

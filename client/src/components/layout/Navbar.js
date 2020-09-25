@@ -48,7 +48,7 @@ const Navbar = (props) => {
         </Link>
       </h1>
       {!loading && (isAuthenticated ? authLinks : guestLinks)}{' '}
-      {/* loading: user for spiner if there is */}
+      {/* loading: use for spiner if there is */}
     </nav>
   );
 };
