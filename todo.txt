@@ -83,3 +83,8 @@ c. Those comp use props as data and process to render to UI
 8. Delete Education, Experiences & Account - Post of acc which is login
 a. Action in profile - Reducer in profile
 b. dispatch in Experience, Education, Dashboard comp
+
+---- Profile Display ----
+1. Get all profile
+
+Tommorow: Solve skills problem
