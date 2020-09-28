@@ -9,7 +9,6 @@ function EditProfile(props) {
   const {
     createProfile,
     history,
-    getCurrentProfile,
     profile: { profile, loading },
   } = props;
   const [formData, setFormData] = useState({
@@ -61,7 +60,7 @@ function EditProfile(props) {
       youtube: loading || !profile.social ? '' : profile.social.youtube,
       instagram: loading || !profile.social ? '' : profile.social.instagram,
     }); // Render data of profile from state to EditProfile Comp
-  }, [loading]);
+  }, [loading, profile]);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });

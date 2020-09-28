@@ -86,5 +86,8 @@ b. dispatch in Experience, Education, Dashboard comp
 
 ---- Profile Display ----
 1. Get all profile
+2. Addressing The Console Warnings
+3. Display profile Detail
 
-Tommorow: Solve skills problem
+Tommorow: Fix getProfilesById - Can't get data from RESTful API
+

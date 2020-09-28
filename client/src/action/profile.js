@@ -32,7 +32,7 @@ export const getCurrentProfile = () => async (dispatch) => {
 
 // Get all profiles
 export const getProfiles = () => async (dispatch) => {
-  dispatch({ type: CLEAR_PROFILE })
+  dispatch({ type: CLEAR_PROFILE }) // Remove state of previos login before
   try {
     const res = await axios.get('/api/profile');
     dispatch({
@@ -53,7 +53,7 @@ export const getProfiles = () => async (dispatch) => {
 // Get profile by ID
 export const getProfilesById = (userId) => async (dispatch) => {
   try {
-    const res = await axios.get(`'/api/profile/${userId}'`);
+    const res = await axios.get(`'/api/profile/user/${userId}'`);
     dispatch({
       type: GET_PROFILE,
       payload: res.data,
@@ -86,7 +86,7 @@ export const getGithubRepos = (username) => async (dispatch) => {
       },
     });
   }
-};
+}; // Don't Use
 
 // Create or update profile
 export const createProfile = (formData, history, edit = false) => async (
@@ -231,7 +231,7 @@ export const deleteEducation = (id) => async (dispatch) => {
 export const deleteAccount = () => async (dispatch) => {
   if (window.confirm('Are you sure? This can NOT be undone!')) {
     try {
-      const res = await axios.delete(`/api/profile`);
+      await axios.delete(`/api/profile`);
       dispatch({
         type: CLEAR_PROFILE,
       });

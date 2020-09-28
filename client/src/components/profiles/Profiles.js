@@ -6,6 +6,7 @@ import ProfileItem from './ProfileItem';
 import { getProfiles } from '../../action/profile';
 
 const Profiles = (props) => {
+  console.log(props);
   const {
     getProfiles,
     profile: { profiles, loading },
@@ -13,7 +14,7 @@ const Profiles = (props) => {
 
   useEffect(() => {
     getProfiles();
-  }, []);
+  }, [getProfiles]);
   return (
     <Fragment>
       {loading ? (
