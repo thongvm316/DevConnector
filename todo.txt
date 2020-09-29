@@ -87,7 +87,10 @@ b. dispatch in Experience, Education, Dashboard comp
 ---- Profile Display ----
 1. Get all profile
 2. Addressing The Console Warnings
-3. Display profile Detail
+3. Display profile Detail: 
+    a. Action - Reducer getProfilesById
+    b. process data - render UI
+4. ProfileTop & ProfileAbout Components
 
-Tommorow: Fix getProfilesById - Can't get data from RESTful API
+Tommorow: Check err with input skill 
 
