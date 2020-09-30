@@ -91,6 +91,7 @@ b. dispatch in Experience, Education, Dashboard comp
     a. Action - Reducer getProfilesById
     b. process data - render UI
 4. ProfileTop & ProfileAbout Components
+5. Profile Experience & Education Display
 
 Tommorow: Check err with input skill 
 
