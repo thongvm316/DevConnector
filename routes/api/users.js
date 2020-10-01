@@ -27,7 +27,6 @@ router.post(
     }
 
     const { name, email, password } = req.body;
-    console.log({name, email, password})
 
     try {
       // See if user exits - Bao loi neu user da ton tai
@@ -52,28 +51,21 @@ router.post(
         password,
       });
 
-      bcrypt.genSalt(10, function (err, salt) {
-        bcrypt.hash(password, salt, function (err, hash) {
-          // Store hash in your password DB.
-          user.password = hash;
-          user.save();
-        });
-      }); // Async
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(password, salt);
+      await user.save();
 
       const payload = {
         user: {
-          id: user.id, // id or _id, All are ok
+          id: user._id,
         },
       };
 
-      console.log({user, payload})
-     
       jwt.sign(
         payload,
         config.get('jwtSecret'),
         { expiresIn: 360000 },
         (err, token) => {
-          if (err) throw err;
           res.json({ token });
         }
       );
@@ -82,7 +74,7 @@ router.post(
       console.log(error.message);
       res.status(500).send('Server Error');
     }
-  } // Khi co UI se thu them ve try catch
+  } 
 );
 
 module.exports = router;

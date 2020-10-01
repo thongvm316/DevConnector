@@ -5,18 +5,13 @@ Kich ban: Muc dich - ptich giai phap of author - tu trinh bay lai
 
 1/ Setup: MongoDB Atlas setup - Express - Connect MongoDB with mongoose - Router file --> Done
 
-2/ JWT - Auth Route - User route / Detail of purpose with every one
-JWT -> done
+2/ JWT - User router
 
-User router: create Model, validate(name, email, password), check if user already exits, create user - hash password and save, create jwt -> done
+3/ Auth router
 
-Auth route: purpose is login -> validate(email, password) - check error and process if error exists, find user in mongo and process if !user, compare password and create jwt --> done
+4/ Profile route
 
-3/ Profile route: post - get me - get all - get with user_id - delete // put experience - deleete experience with exp_id // put education - delete education with edc_id
-
-Post: get info from user and store or update to MongoDB-> 1/ auth middleware, 2/ validate(status, skills) 3/ Create obj with info from user 4/ Logic to update or create
-
-4/ Post route
+5/ Post route
 
 ------------------------------------------------ Front-End ------------------------------------------------
 
@@ -93,5 +88,7 @@ b. dispatch in Experience, Education, Dashboard comp
 4. ProfileTop & ProfileAbout Components
 5. Profile Experience & Education Display
 
-Tommorow: Check err with input skill 
-
+---- Posts & Comments ----
+1. Post Reducer, Action & Initial Component
+    a. Reducer post - action post -> Component Post
+2. Post Item Component
