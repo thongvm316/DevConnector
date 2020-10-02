@@ -5,7 +5,6 @@ const { check, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const bcrypt = require('bcryptjs');
-
 const User = require('../../models/User');
 
 // Get user after login, register
@@ -69,13 +68,11 @@ router.post(
           }
         );
   
-        // Return jsonwebtoken
-        // res.send('User logined');
       } catch (error) {
         console.log(error.message);
         res.status(500).send('Server Error');
       }
-    } // Khi co UI se thu them ve try catch
+    }
   );
   
 module.exports = router;

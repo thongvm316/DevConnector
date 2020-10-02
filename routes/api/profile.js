@@ -20,7 +20,6 @@ router.post(
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      // App exec errors.isEmpty() first, then exec ! -> give result
       return res.status(400).json({ errors: errors.array() });
     }
 
