@@ -18,7 +18,6 @@ router.get('/', auth, async (req, res) => {
     }
 }) //??? chua biet dung de lam gi
 
-
 // Login
 router.post(
     '/',

@@ -5,7 +5,6 @@ const { check, validationResult } = require('express-validator');
 
 // Model
 const Post = require('../../models/Post');
-// const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
 router.post(
@@ -72,7 +71,7 @@ router.delete('/:id', auth, async (req, res) => {
     }
 
     // Check user
-    if (post.user !== req.user.id) {
+    if (post.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: 'User not authorized' });
     } // Purpose: Khi xoa post, chi user da post commemt do moi dc xoa
 

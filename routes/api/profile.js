@@ -83,7 +83,7 @@ router.post(
   }
 );
 
-// Get profile of myself
+// Get profile of one
 router.get('/me', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({

@@ -5,13 +5,11 @@ Kich ban: Muc dich - ptich giai phap of author - tu trinh bay lai
 
 1/ Setup: MongoDB Atlas setup - Express - Connect MongoDB with mongoose - Router file --> Done
 
-2/ JWT - User router -> Done
+2/ JWT - User router - Auth router -> Done
 
-3/ Auth router  --> 50%, continues: put - del exp, edu
+3/ Profile route --> Done
 
-4/ Profile route
-
-5/ Post route
+4/ Post route
 
 ------------------------------------------------ Front-End ------------------------------------------------
 
@@ -93,6 +91,7 @@ b. dispatch in Experience, Education, Dashboard comp
     a. Reducer post - action post -> Component Post
 2. Post Item Component
 3. Like & Unlike Functionality
-
-a. Try to understand: ref: 'users' in Model Mongoose 
-b. Fix Delete post
+4. Del - Add Post
+    a. Action - Reducer -> finally component
+5. Display single post
+    a. action - reducer - component
