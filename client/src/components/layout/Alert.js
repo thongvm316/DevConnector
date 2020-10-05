@@ -12,7 +12,6 @@ const Alert = (props) => {
                     {alert.msg}
                 </div>
             ));
- // Purpose: show err if it is
 }
     
 Alert.propTypes = {

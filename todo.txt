@@ -12,6 +12,7 @@ Kich ban: Muc dich - ptich giai phap of author - tu trinh bay lai
 4/ Post route
 
 ------------------------------------------------ Front-End ------------------------------------------------
+First: Alert
 
 ---- User Authencation ----
 1. Get info from User in Register comp and send it to API api/users to register user
@@ -89,9 +90,20 @@ b. dispatch in Experience, Education, Dashboard comp
 ---- Posts & Comments ----
 1. Post Reducer, Action & Initial Component
     a. Reducer post - action post -> Component Post
+
 2. Post Item Component
+
 3. Like & Unlike Functionality
+
 4. Del - Add Post
     a. Action - Reducer -> finally component
+    
 5. Display single post
     a. action - reducer - component
+
+6. Add comments
+    Action - reducer - component CommentForm
+
+7. Display and Delete comments
+
+Fix: Why when add new comment, UI ko auto re-render / Remove comment

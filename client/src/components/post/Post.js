@@ -1,22 +1,32 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
-import PostItem from '../posts/PostItem'
+import PostItem from '../posts/PostItem';
+import CommentForm from './CommentForm';
+import CommentItem from './CommentItem';
 import { getPost } from '../../action/post';
 
 const Post = ({ getPost, post: { post, loading }, match }) => {
-  console.log(post);
+  // console.log(post);
   useEffect(() => {
     getPost(match.params.id);
   }, [getPost]);
-  return loading || post === null ? <Spinner/> : <Fragment>
-      <Link to="/posts" className="btn">
-          Back to posts
+  return loading || post === null ? (
+    <Spinner />
+  ) : (
+    <Fragment>
+      <Link to='/posts' className='btn'>
+        Back to posts
       </Link>
-      <PostItem post={post} showActions={false}/>
-  </Fragment>
+      <PostItem post={post} showActions={false} />
+      <CommentForm postId={post._id} />
+      <div className='comment'>{post.comments.map((comment) => (
+        <CommentItem  key={comment._id} comment={comment} postId={post._id}/>
+      ))}</div>
+    </Fragment>
+  );
 };
 
 const mapStateToProps = (state) => ({

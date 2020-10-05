@@ -22,7 +22,7 @@ const Register = (props) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
-      setAlert('Passwords do not match', 'danger'); // relate Fn mapDispatchToProps
+      setAlert('Passwords do not match', 'danger'); // related Fn mapDispatchToProps
     } else {
       register({ name, email, password });
     }
