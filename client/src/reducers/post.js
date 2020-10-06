@@ -42,8 +42,7 @@ export default function (state = initialState, action) {
         ...state,
         post: { ...state.post, commemts: payload },
         loading: false,
-      }; // console.log(post);
-
+      };
     case REMOVE_COMMENT:
       return {
         ...state,

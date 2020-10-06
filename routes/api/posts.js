@@ -183,20 +183,7 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
       return res.status(401).json({ msg: 'User not authorized' });
     }
 
-    // Get remove index
-    // const removeIndex = post.comments
-    //   .map(comment => comment.user.toString())
-    //   .indexOf(req.user.id);
-
-    // console.log(post.comments
-    //   .map(comment => comment.user.toString()).indexOf(req.user.id))
-
-    // post.comments.splice(removeIndex, 1);
-    // await post.save();
-    // res.json(post.comments);
-
-    post.comments = post.comments.filter((id) => {
-      console.log(id);
+    post.comments = post.comments.filter(({ id }) => {
       return id !== req.params.comment_id;
     });
 

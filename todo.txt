@@ -19,7 +19,7 @@ First: Alert
     a. Connect Redux
     b. If err -> show in UI by Alert Redux
     c. Else -> send data to server and sign - return token to user by Auth Redux
-
+DONE 1
 
 2. Load User & Set Auth Token
 Note: After register, one token will be send to client and set to LocalStogare - set it to req Header - load user with that token
@@ -105,5 +105,3 @@ b. dispatch in Experience, Education, Dashboard comp
     Action - reducer - component CommentForm
 
 7. Display and Delete comments
-
-Fix: Why when add new comment, UI ko auto re-render / Remove comment

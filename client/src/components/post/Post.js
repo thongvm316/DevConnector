@@ -8,12 +8,12 @@ import CommentForm from './CommentForm';
 import CommentItem from './CommentItem';
 import { getPost } from '../../action/post';
 
-const Post = ({ getPost, post: { post, loading }, match }) => {
-  // console.log(post);
+const Post = (props) => {
+  const { getPost, post: { post, loading }, match } = props;
   useEffect(() => {
     getPost(match.params.id);
-  }, [getPost]);
-  return loading || post === null ? (
+  }, [getPost, match.params.id]);
+  return (loading || post === null) ? (
     <Spinner />
   ) : (
     <Fragment>
