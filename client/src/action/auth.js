@@ -16,7 +16,7 @@ import setAuthToken from '../utils/setAuthToken';
 export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
-  } // why use for this action and App Comp ???
+  }
 
   try {
     const res = await axios.get('/api/auth');

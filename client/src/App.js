@@ -24,9 +24,9 @@ import setAuthToken from './utils/setAuthToken';
 
 import './App.css';
 
-if (localStorage.token) {
-  setAuthToken(localStorage.token);
-} // set x-auth-herder for request header from user
+// if (localStorage.token) {
+//   setAuthToken(localStorage.token);
+// } // set x-auth-herder for request header from user
 
 const App = () => {
   useEffect(() => {
@@ -46,7 +46,6 @@ const App = () => {
               path='/register'
               render={(props) => <Register {...props} />}
             />{' '}
-            {/* Like: line 37 if user render */}
             <Route exact path='/login' component={Login} />
             <Route exact path='/profiles' component={Profiles} />
             <Route exact path='/profile/:id' component={Profile} />
