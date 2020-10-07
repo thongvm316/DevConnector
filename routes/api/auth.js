@@ -16,7 +16,7 @@ router.get('/', auth, async (req, res) => {
         console.log(error.message)
         res.status(500).send('Server Error')
     }
-}) //??? chua biet dung de lam gi
+}) //
 
 // Login
 router.post(

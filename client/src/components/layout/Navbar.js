@@ -6,7 +6,7 @@ import { logout } from '../../action/auth';
 
 const Navbar = (props) => {
   const {
-    auth: { isAuthenticated, loading },
+    auth: { isAuthenticated },
     logout,
   } = props; // destructor 2 cap
   const authLinks = (
@@ -53,7 +53,7 @@ const Navbar = (props) => {
           <i className='fas fa-code'></i> DevConnector
         </Link>
       </h1>
-      {!loading && (isAuthenticated ? authLinks : guestLinks)}{' '}
+      {isAuthenticated ? authLinks : guestLinks}{' '}
       {/* loading: use for spiner if there is */}
     </nav>
   );

@@ -28,16 +28,18 @@ a. setAuthToken
 b. Action loadUser
 c. reducer
 d. after register and token
-
+DONE
 
 3. User Login
 a. Get info from user (Login Comp) -> update to useState
 b. When user submit -> exc Fn action login
 c. Redirect if loggin success
+DONE
 
 4. Logout
 a. Create type logout - action - reducer
 b. Navbar Comp: destructor props - loading? - conditional rendering
+DONE
 
 ---- Dashboard & Profile Management ----
 1. Protect this route - purpose: khi nguoi dung truy cap Dashboard, neu chua dang nhap, Redirect user ve login page and continues neu da login. (PrivateRoute)
@@ -111,5 +113,7 @@ Problem in Heroku:
 1. Reload Posts page -> Err 401, no token
 2. Reload Comment Page -> Err 401
 3. Dashboard cung tuong tu
+4. Gravatar
+5. Warning in console (terminal - console in BW)
 note: Local thi binh thuong
 
