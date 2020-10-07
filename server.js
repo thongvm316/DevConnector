@@ -16,6 +16,8 @@ app.use('/api/auth', require('./routes/api/auth')); // Login & get user which is
 app.use('/api/profile', require('./routes/api/profile')); // Post, put, del profile
 app.use('/api/posts', require('./routes/api/posts')); // Comment
 
+// abc
+
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
   // set static folder
