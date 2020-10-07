@@ -6,7 +6,12 @@ import Spinner from '../layout/Spinner';
 import DashboardAction from './DashboardAction';
 import Experience from './Experience';
 import Education from './Education';
+import setAuthToken from '../../utils/setAuthToken';
 import { deleteAccount, getCurrentProfile } from '../../action/profile';
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+} 
 
 const Dashboard = ({
   getCurrentProfile,

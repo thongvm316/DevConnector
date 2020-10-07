@@ -105,3 +105,11 @@ b. dispatch in Experience, Education, Dashboard comp
     Action - reducer - component CommentForm
 
 7. Display and Delete comments
+
+-----
+Problem in Heroku:
+1. Reload Posts page -> Err 401, no token
+2. Reload Comment Page -> Err 401
+3. Dashboard cung tuong tu
+note: Local thi binh thuong
+
