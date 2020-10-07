@@ -24,9 +24,9 @@ import setAuthToken from './utils/setAuthToken';
 
 import './App.css';
 
-// if (localStorage.token) {
-//   setAuthToken(localStorage.token);
-// } // set x-auth-herder for request header from user
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+} // set x-auth-herder for request header from user
 
 const App = () => {
   useEffect(() => {
