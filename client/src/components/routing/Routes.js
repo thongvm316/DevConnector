@@ -18,7 +18,7 @@ import PrivateRoute from '../routing/PrivateRoute';
 
 const Routes = () => {
   return (
-    <section className='container'>
+    <section className='container'> 
       <Alert />
       <Switch>
         <Route

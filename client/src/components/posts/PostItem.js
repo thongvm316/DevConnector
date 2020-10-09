@@ -14,7 +14,6 @@ const PostItem = (props) => {
     post: { _id, text, name, avatar, user, comments, likes, date },
     showActions
   } = props;
-  console.log(props);
   return (
     <div className='post bg-white p-1 my-1'>
       <div>

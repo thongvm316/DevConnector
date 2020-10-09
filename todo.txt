@@ -43,12 +43,15 @@ DONE
 
 ---- Dashboard & Profile Management ----
 1. Protect this route - purpose: khi nguoi dung truy cap Dashboard, neu chua dang nhap, Redirect user ve login page and continues neu da login. (PrivateRoute)
+DONE
 
 2. Redux (reducer - action) profile - Get current profile
 Purpose: Sau khi login, token duoc luu trong LocalStogare - thao tac lay profile cua user nay
 Logic: Sau khi login -> Redirect page Dashboard and exec action getCurrentProfile by useEfect, reducer with that action -> Return new state -> Render State into UI
+Done
 
 3. Starting On The Dashboard -> Render data to UI
+Done
 
 4. CreateProfile Component - Create Action
 a. Prepare HTML - state - get value from UI and process
@@ -110,12 +113,7 @@ b. dispatch in Experience, Education, Dashboard comp
 
 -----
 Problem in Heroku:
-1. Reload Posts page -> Err 401, no token
-2. Reload Comment Page -> Err 401
-3. Dashboard cung tuong tu
-4. Gravatar
 5. Warning in console (terminal - console in BW)
-note: Local thi binh thuong
 
 
 
