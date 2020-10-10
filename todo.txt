@@ -56,6 +56,7 @@ Done
 4. CreateProfile Component - Create Action
 a. Prepare HTML - state - get value from UI and process
 b. Action to create or update
+Done
 
 5.  Edit Profile
 a. Get data of profile after user login and render UI
@@ -69,6 +70,7 @@ b. Edit Profile
         b1. Get new info user and submit through from
         b2. Exec createProfile() in submit action
         b3. Logic with createProfile...
+Done
 
 6. Add Experience - education
 a. Action - Redux
@@ -112,8 +114,7 @@ b. dispatch in Experience, Education, Dashboard comp
 7. Display and Delete comments
 
 -----
-Problem in Heroku:
-5. Warning in console (terminal - console in BW)
+
 
 
 

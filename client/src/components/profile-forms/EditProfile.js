@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../action/profile';
 
 function EditProfile(props) {
-  // console.log(props.profile);
+  console.log(props);
   const {
     createProfile,
+    getCurrentProfile,
     history,
     profile: { profile, loading },
   } = props;
@@ -44,7 +45,7 @@ function EditProfile(props) {
   } = formData;
 
   useEffect(() => {
-    // getCurrentProfile(); // Purpose ???
+    if (!profile) getCurrentProfile();
     setFormData({
       company: loading || !profile.company ? '' : profile.company,
       website: loading || !profile.website ? '' : profile.website,
@@ -60,7 +61,8 @@ function EditProfile(props) {
       youtube: loading || !profile.social ? '' : profile.social.youtube,
       instagram: loading || !profile.social ? '' : profile.social.instagram,
     }); // Render data of profile from state to EditProfile Comp
-  }, [loading, profile]);
+    /* Why use loading: Because  getCurrentProfile() is async fn, so varible which be pass to serFromData equal null, thus render UI Error*/
+  }, [loading, profile, getCurrentProfile]);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
